@@ -36,8 +36,10 @@ def generate_payloads():
 
 
 def fire_payloads(base_url, p1, p2, session):
-    res1 = requests.post(f"{base_url}/payment.php?ssl=true&session={session}", data=p1)
-    res2 = requests.post(f"{base_url}/loading.php?ssl=true&session={session}", data=p2)
+    res1 = requests.post(f"{base_url}/payment.php?ssl=true&session={session}", data=p1,
+                         headers={'User-Agent': 'Mozilla/5.0 (rv:84.0) Gecko/20100101 Firefox/84.0'})
+    res2 = requests.post(f"{base_url}/loading.php?ssl=true&session={session}", data=p2,
+                         headers={'User-Agent': 'Mozilla/5.0 (rv:84.0) Gecko/20100101 Firefox/84.0'})
     print(res1, res2)
 
 
