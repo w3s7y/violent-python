@@ -49,5 +49,9 @@ def generate_random_session():
 if __name__ == "__main__":
     while True:
         payload = generate_payloads()
+        print("Firing!")
+        print(payload[0])
+        print(payload[1])
         fire_payloads(init_url, payload[0], payload[1], generate_random_session())
+        print()
         time.sleep(5)
