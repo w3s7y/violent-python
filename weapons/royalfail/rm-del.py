@@ -43,9 +43,8 @@ def get_session_from_website(url):
 
 
 def fire_payloads(base_url, p1, p2, session):
-    response1 = requests.post(f"{base_url}/payment.php?ssl=true&session={session}", data=p1)
-    response2 = requests.post(f"{base_url}/loading.php?ssl=true&session={session}", data=p2)
-    print(response1, response2)
+    requests.post(f"{base_url}/payment.php?ssl=true&session={session}", data=p1)
+    requests.post(f"{base_url}/loading.php?ssl=true&session={session}", data=p2)
 
 
 def generate_random_session():
@@ -54,7 +53,6 @@ def generate_random_session():
 
 
 if __name__ == "__main__":
-    for x in range(1):
+    while True:
         payload = generate_payloads()
-        session = generate_random_session()
-        fire_payloads(init_url, payload[0], payload[1], session)
+        fire_payloads(init_url, payload[0], payload[1], generate_random_session())
