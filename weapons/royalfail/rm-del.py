@@ -2,6 +2,7 @@ import random
 import requests
 import pandas
 import uuid
+import time
 
 
 init_url = "http://royal-mail.delivery"
@@ -49,3 +50,4 @@ if __name__ == "__main__":
     while True:
         payload = generate_payloads()
         fire_payloads(init_url, payload[0], payload[1], generate_random_session())
+        time.sleep(5)
