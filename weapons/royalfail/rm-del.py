@@ -10,6 +10,7 @@ mail_domains = ["yahoo.com", "gmail.com", "outlook.co.uk", "hotmail.co.uk", "hot
 f_names = pandas.read_csv('babies-first-names-all-names-all-years.csv').FirstForename.to_list()
 l_names = pandas.read_csv('surnames.csv').name.to_list()
 cities = pandas.read_csv('uk-towns-sample.csv').name.to_list()
+user_agents = pandas.read_csv('user_agent.csv').useragent.to_list()
 
 
 def generate_payloads():
@@ -36,10 +37,11 @@ def generate_payloads():
 
 
 def fire_payloads(base_url, p1, p2, session):
+    ua = random.choice(user_agents)
     res1 = requests.post(f"{base_url}/payment.php?ssl=true&session={session}", data=p1,
-                         headers={'User-Agent': 'Mozilla/5.0 (rv:84.0) Gecko/20100101 Firefox/84.0'})
+                         headers={'User-Agent': ua})
     res2 = requests.post(f"{base_url}/loading.php?ssl=true&session={session}", data=p2,
-                         headers={'User-Agent': 'Mozilla/5.0 (rv:84.0) Gecko/20100101 Firefox/84.0'})
+                         headers={'User-Agent': ua})
     print(res1, res2)
 
 
